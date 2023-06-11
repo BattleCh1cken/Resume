@@ -1,0 +1,319 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tgpagella} % set the font-family to `TeX Gyre Pagella`
+\usepackage{geometry}
+\usepackage{sectsty} % change the appearance of \section
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xstring}
+\usepackage{tcolorbox}
+\usepackage{lipsum}
+\usepackage{hyperref}
+
+
+
+\geometry{ % set the document layout
+	a4paper,
+	left=20mm,
+	right=20mm,
+	bottom=10mm,
+	top=15mm
+}
+
+\pagestyle{empty} % remove header, footer, pagenumbers, etc.
+
+\sectionfont{
+	\fontfamily{qag}\selectfont % change font-family to `TeX Gyre Adventor` with font-code `qag`
+	\sectionrule{0pt}{0pt}{-8pt}{1.5pt} % insert an horizontal rule -8pt below the title, with a thickness of 1pt
+}
+
+%%%%%%%%%%%%% Macros %%%%%%%%%%%%%
+
+%%%%%%%%%%%%% Colors %%%%%%%%%%%%%
+
+\definecolor{blueSky}{RGB}{49, 120, 198}
+\definecolor{orangeFruit}{RGB}{224, 128, 44}
+\definecolor{redBlood}{RGB}{188, 20, 20}
+\definecolor{grayShy}{RGB}{153, 150, 142}
+
+% TODO: this should go someplace else, but idk where
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=blueSky,
+}
+
+\newcommand{\mainColor}{redBlood} % pick a color above, or add a custom one
+
+%%%%%%%%%%%%% Spaces %%%%%%%%%%%%%
+
+% Horizontal %
+
+\newlength{\spacebox}
+\settowidth{\spacebox}{123456789} % set \spacebox length to be equal to the width of the box formed by `123456789`
+
+\newcommand{\xhspace}{\hspace*{0.1em}}
+\newcommand{\shspace}{\hspace*{0.5em}}
+\newcommand{\mhspace}{\hspace*{1em}}
+
+\newcommand{\negxhspace}{\hspace*{-0.2em}}
+\newcommand{\negshspace}{\hspace*{-0.5em}}
+\newcommand{\negmhspace}{\hspace*{-1em}}
+\newcommand{\neghhspace}{\hspace*{-1.5em}}
+
+% Vertical %
+
+\newcommand{\negxvspace}{\vspace*{-0.2em}}
+\newcommand{\negsvspace}{\vspace*{-0.5em}}
+\newcommand{\negmvspace}{\vspace*{-1em}}
+\newcommand{\neghvspace}{\vspace*{-1.5em}}
+
+\newcommand{\svspace}{\vspace*{0.5em}}
+\newcommand{\mvspace}{\vspace*{1em}}
+
+%%% boxAwesome Macro %%%
+
+\newcommand{\boxAwesome}[1]{
+	\makebox[1.50em][c]{
+		#1
+	}
+}
+
+%%% Job Macro %%%
+
+\newcommand{\job}[1]{ % `1` indicate the number of parameters given to the \name macro
+	\large % font size
+	\color{grayShy} % change the color to gray
+	\begin{center} \textsc{\MakeLowercase{#1}} \end{center}\par \mvspace % prints #1 (the title) centered and scripted
+}
+
+%%% Name Macro %%%
+
+\newcommand{\name}[3]{
+	%\begin{center}
+	%\begin{tikzpicture}
+	%\clip (0,0)  circle (2cm) ;
+	%\node[anchor=center] at (0, 0) {
+	%\includegraphics[scale=0.3]{img/avatar-cv.png}
+	%};
+	%\end{tikzpicture}
+	%\end{center}
+	\hfill
+	\Huge % font size
+	\fontfamily{phv}\selectfont % change font-family to `Helvetica` with font-code `phv`
+	\begin{center} \color{\mainColor} \textbf{\MakeUppercase{#1}} \color{black} \textbf{#2} \end{center}\par % \par create a new paragraph
+	\negxvspace
+	\job{#3}
+	\normalsize\normalfont % change the size and font back to normal
+	\color{black} % change the color back to normal (black)
+}
+
+%%% Section Macro %%%
+
+\newcommand{\cvsection}[2]{
+	\section*{
+	  \color{\mainColor} \boxAwesome{#1} \negshspace \StrSplit{#2}{3}{\csA}{\csB} \csA\color{black}\csB
+	 }
+}
+
+%%% Subsection Macro %%%
+
+\newcommand{\cvsubsection}[2]{
+	\subsection*{
+		\boxAwesome{#1} #2
+	}
+}
+
+%%% Personal Details Macro %%%
+
+\newcommand{\info}[2]{
+	\noindent\hangindent=2em\hangafter=0 % \noindent delete default indentation ; \hangindent set custom indentation ; \hangafter indicate for how many lines we want this indentation (0 means for all lines)
+	\boxAwesome{#1}
+	#2 \par
+	\svspace
+}
+
+%%% Skills Macro %%%
+
+\newcommand{\simpleSkill}[1]{
+	\noindent\hangindent=1.5em\hangafter=0
+	\faAngleRight
+	\shspace
+	#1
+	\svspace
+	\par
+}
+
+\newcommand{\doubleSkill}[3]{
+	\noindent\hangindent=1.5em\hangafter=0
+	\parbox{30\spacebox} {
+		\faAngleRight
+		\boxAwesome{#1} \textbf{#2}
+		\svspace
+	} \svspace \texttt{#3} \par
+}
+
+%%% Work Experience Macro %%%
+
+\newcommand{\work}[4]{
+	\noindent \textbf{#1}
+	\hfill % the following is written at the right of the document on the same line
+	\parbox{8em}{
+		\centering\textbf{#2}
+	} \par
+	\noindent \color{grayShy} \textsc{\MakeLowercase{#3}} \color{black} \par
+	#4
+	\normalsize \par
+}
+
+%%% Extracurricular Macro %%%
+
+\newcommand{\activity}[3]{
+	\noindent \textbf{#1}
+	\hfill % the following is written at the right of the document on the same line
+	\parbox{8em}{
+		\centering\textbf{#2}
+	} \par
+	#3
+	\normalsize \par
+}
+
+
+
+%%% Education Macro %%%
+
+\newcommand{\education}[3]{
+	\noindent \textbf{#1}
+	\hfill
+	\parbox{8em}{
+		\centering\textbf{#2}
+	} \par
+	\noindent \color{grayShy} \textsc{\MakeLowercase{#3}} \color{black} \par
+	\mvspace
+	\normalsize \par
+}
+
+%%% Hobbies Macro %%%
+
+\newcommand{\hobby}[2]{
+	\noindent\hangindent=1.5em\hangafter=0
+	\faAngleRight
+	\shspace
+	\boxAwesome{#1} #2
+	\svspace
+	\par
+}
+
+%%%%%%%%%%%%% Your CV below %%%%%%%%%%%%%
+
+\begin{document}
+\name{Felix}{Hass}{}
+
+\info{\faEnvelopeOpen}{\texttt{Felix@larkov.de}}
+\info{\faPhone}{(240) 791-9393}
+\info{\faMap}{Greenbelt, MD}
+\info{\faGithub}{\texttt{BattleCh1cken}}
+
+% TODO: change these icons
+
+\negsvspace
+\cvsection{\faUser}{About Me}
+\svspace
+
+
+Junior in High School with an interest in Computer Science. Currently looking for internship/research opportunities. I am available for summer 2023 as well as the coming 2023-2024 school year.
+
+\svspace
+
+
+\negsvspace
+\cvsection{\faDna}{Skills}
+\svspace
+\cvsubsection{\faLaptopCode}{Technical skills}
+\svspace
+
+\doubleSkill{\faCode}{Languages}{Rust \textbullet{} C/C++ \textbullet{} Shell \textbullet{} Nix \textbullet{} Lua \textbullet{} Python}
+\doubleSkill{\faDatabase}{Databases}{SQLite}
+\doubleSkill{\faHammer}{Build Tools}{Nix \textbullet{} Cmake}
+\doubleSkill{\faCloud}{DevOps}{NixOS \textbullet{} Docker}
+\doubleSkill{\faTools}{Tools}{Git \textbullet{} NeoVim \textbullet{} Z Shell \textbullet{} Hyprland \textbullet{} \LaTeX{}}
+\doubleSkill{\faLinux}{OS}{Linux}
+
+\negsvspace
+\cvsubsection{\faHandsHelping}{Soft skills}
+\svspace
+
+% TODO: correct these
+
+\simpleSkill{Team management}
+\simpleSkill{Problem-solving and critical thinking}
+\simpleSkill{Interpersonal Communication}
+\simpleSkill{Self-awareness}
+\simpleSkill{Self-motivated}
+\simpleSkill{Time management}
+\simpleSkill{Accountability}
+
+
+\cvsection{\faGraduationCap}{Education}
+\svspace
+
+\education{High School Diploma}{2020 -- Present}{Eleanor Roosevelt High School - Greenbelt, MD}
+
+\cvsubsection{\faAward}{Achievements}
+\svspace
+
+\begin{itemize}
+	\item[\faAngleRight] Gold Medal (summa cum laude) on the National Latin Exam (2023)
+		\negxvspace
+	\item[\faAngleRight] AP Computer Science Principles
+		\negxvspace
+	\item[\faAngleRight] AP Seminar
+		\negxvspace
+	\item[\faAngleRight] Capstone Program
+\end{itemize}
+
+
+\cvsubsection{\faCalendar}{Extracurricular Activities}
+\svspace
+
+\activity{The Programming Club}{2023 -- Present}{I founded and run “The Programming Club” at Eleanor Roosevelt High School, in collaboration with another club, WE r STEM. We focus on fun, applicable programming skills like game development, using real-world tools, including languages like C++ and python, along with game engines like Godot and Unity. }
+\activity{Vex Robotics}{2021 -- Present}{I am a part of the ERHS Vex Robotics team, Area 53, where I’m the leader of my squad, 53E. Vex Robotics is almost entirely student lead. The Students are not only expected to be able to design, build, and program their robots themselves, but also document that process as well. In addition, strong teamwork and team management skills are required in order to have the team work together smoothly. Under my leadership, 53E has won several awards, including Skills Champion, the Design Award, and Tournament Champion at the Baltimore Sun. In addition, we got to the State Championship and the U.S. Open in Iowa.}
+\activity{Band}{2012 -- Present}{I have been playing flute since 4th grade, and have continued through high school, where I am now a part of the wind ensemble at Eleanor Roosevelt High School, which is the highest level band there. I have participated in the Solo and Ensemble festival multiple times, and have participated in the Middle School Honor Band.}
+
+
+\neghvspace
+\cvsection{\faBriefcase}{Work Experience}
+\svspace
+
+\work{Nixpkgs Maintainer}{2022 -- Present}{Remote}{I volunteer as a package maintainer for the Nixpkgs package repository. I maintain a specific piece of software, update the package to new versions when they receive updates and perform testing to make sure that everything is working as intended.}
+
+\work{Paper Carrier}{2018 -- Present}{Greenbelt, MD}{I currently have a job with the Greenbelt News Review, delivering papers every week}
+
+\work{Sound Technician}{2016 -- 2021}{Greenbelt, MD}{I volunteered for several theater productions at The Greenbelt Arts Center and the Music and Drama Club at NASA. I do tech work, mainly sound. My responsibilities include mixing the audio levels live, and playing/making my own sound effects.}
+
+
+\neghvspace
+\cvsubsection{\faPuzzlePiece}{Hobbies \& Interests}
+\svspace
+
+I love building things, hardware and software. In my free time I do things like 3d-printing, and contributing to open source projects. I also love fine tuning my setup, though both hardware and software, finding the perfect tools for the job, whether it be a perfectly tuned window manager, or a hand sautered mechanical keyboard.
+
+\cvsubsection{}{Personal Projects}
+
+\begin{itemize}
+	\item[\faAngleRight] \href{https://github.com/BattleCh1cken/dotfiles}{\textbf{Dotfiles:}} My personal configuration files for my computers, mangaged with the NixOS operating system.
+		\negxvspace{}
+	\item[\faAngleRight] \href{https://github.com/Area-53-Robotics/discord-bot}{\textbf{Fred:}} A discord bot that reminds people to do tasks with timers. Built with Rust, the Poise framework, and SQLite.
+		\negxvspace{}
+	\item[\faAngleRight] \href{https://github.com/Area-53-Robotics/Intro-To-Robotics}{\textbf{The Introduction To Robotics:}} A wiki for the Area 53 Robotics Club meant to teach new members the concepts they will need to know when joining the club. Built with MKDocs Material.
+		\negxvspace{}
+	\item[\faAngleRight] \href{https://github.com/BattleCh1cken/Resume}{\textbf{Resume:}} This resume, written in a typesetting language called \LaTeX{}.
+\end{itemize}
+
+
+\end{document}

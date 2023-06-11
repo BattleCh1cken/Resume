@@ -1,0 +1,147 @@
+% a mashup of hipstercv, friggeri and twenty cv
+% https://www.latextemplates.com/template/twenty-seconds-resumecv
+% https://www.latextemplates.com/template/friggeri-resume-cv
+
+\documentclass[pastel]{simplehipstercv}
+% available options are: darkhipster, lighthipster, pastel, allblack, grey, verylight, withoutsidebar
+%withoutsidebar
+\usepackage[utf8]{inputenc}
+\usepackage[default]{raleway}
+\usepackage[margin=1cm, a4paper]{geometry}
+
+%my packages that I added
+\usepackage{array}
+\usepackage{tabularx}
+
+
+%------------------------------------------------------------------ Variablen
+
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.23\textwidth}
+\setlength{\rightcolwidth}{0.75\textwidth}
+
+%------------------------------------------------------------------
+\title{New Simple CV}
+\author{\LaTeX{} Ninja}
+\date{June 2019}
+
+\pagestyle{empty}
+\begin{document}
+
+
+\thispagestyle{empty}
+%-------------------------------------------------------------
+
+\section*{Start}
+
+\simpleheader{headercolour}{Felix}{Hass}{}{white}
+
+
+
+%------------------------------------------------
+
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{4em}
+
+\setlength{\columnsep}{1.5cm}
+\columnratio{0.23}[0.75]
+\begin{paracol}{2}
+	\hbadness5000
+	\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
+
+	\paracolbackgroundoptions
+
+	% 0.9,0.9,0.9 -- 0.8,0.8,0.8
+
+
+	\footnotesize
+	{\setasidefontcolour
+	\flushright
+
+	\bg{cvgreen}{white}{About Me}\\[0.5em]
+
+	{\footnotesize
+
+	Junior in High School with an interest in Computer Science. Currently looking for internship/research opportunities. I am available for summer 2023 as well as the coming 2023-2024 school year.
+	}
+	\bigskip
+
+	\bg{cvgreen}{white}{Interests}\\[0.5em]
+
+	I love building things, hardware and software. In my free time I do things like 3d-printing, and contributing to open source projects. I also love fine tuning my setup, though both hardware and software, finding the perfect tools for the job, whether it be a perfectly tuned window manager, or a hand sautered mechanical keyboard.
+
+	\bigskip
+
+	\bg{cvgreen}{white}{About This Resume}\\[0.5em]
+
+	This resume was generated through code, with a typesetting language called \LaTeX{}. You can find the relevant repository \href{https://github.com/BattleCh1cken/Resume}{here}.
+
+	\vspace{4em}
+
+
+
+
+	\vspace*{\fill}
+
+	\flushleft
+	\infobubble{\faAt}{cvgreen}{white}{felix@larkov.de}
+	\infobubble{\faPhone}{cvgreen}{white}{240/791/9393}
+	\infobubble{\faGithub}{cvgreen}{white}{BattleCh1cken}
+	\infobubble{\faMapMarker}{cvgreen}{white}{Greenbelt, MD 20770}
+
+
+	}
+	%-----------------------------------------------------------
+	\switchcolumn
+
+	\small
+	\section*{Education}
+
+	\begin{tabular}{r p{0.6\textwidth} c}
+		\cvhighschool{2020 -- 2024}{High School Diploma}{Greenbelt, MD}{Eleanor Roosevelt High School \color{headerblue}} \\
+	\end{tabular}
+
+	\bigskip
+
+	\textbf{Achievements}
+
+	\begin{itemize}
+		\item Gold medal on the National Latin Exam
+		\item Participant in the Capstone Program
+		\item AP Computer Science Principles
+		\item AP Seminar
+	\end{itemize}
+
+	\section*{Extracurricular Activities}
+
+	\begin{tabular}{r| p{0.5\textwidth} c}
+		\cvactivity{2023 -- Present}{The Programming Club}{President}{I founded and run “The Programming Club” at Eleanor Roosevelt High School, in collaboration with another club, WE r STEM. We focus on fun, applicable programming skills like game development, using real-world tools, including languages like C++ and python, along with game engines like Godot and Unity. }                                                                                                                                                                                                                                                                                                             \\
+		\cvactivity{2021 -- Present}{Band}{Flutist}{I have been playing flute since 4th grade, and have continued through high school, where I am now a part of the wind ensemble at Eleanor Roosevelt High School, which is the highest level band there. I have participated in the Solo and Ensemble festival multiple times, and have participated in the Middle School Honor Band.}                                                                                                                                                                                                                                                                                                           \\
+		\cvactivity{2021 -- Present}{Vex Robotics}{Squad Leader}{I am a part of the ERHS Vex Robotics team, Area 53 where I’m the leader of my squad, 53E. Vex Robotics is almost entirely student lead. The Students are not only expected to be able to design, build, and program their robots themselves, but also document that process as well. In addition, strong teamwork and team management skills are required in order to have the team work together smoothly. Under my leadership, 53E has won several awards, including Skills Champion, the Design Award, and Tournament Champion at the Baltimore Sun. In addition, we got to the State Championship and the U.S. Open in Iowa.} \\
+	\end{tabular}
+
+	\section*{Employment Experience}
+
+	\begin{tabular}{r| p{0.5\textwidth} c}
+		\cvevent{2022 -- Present}{Nixpkgs Maintainer}{maintainer}{Remote \color{cvred}}{I volunteer as a package maintainer for the Nixpkgs package repository. I maintain a specific piece of software, update the package to new versions when they receive updates and perform testing to make sure that everything is working as intended.} \\
+		\cvevent{2018 -- Present}{Paper Route}{Carrier}{Greenbelt, MD\color{cvred}}{I currently have a job with the Greenbelt News Review, delivering papers.}                                                                                                                                                                                  \\
+		\cvevent{2016 -- 2021}{Theater}{Sound Technician}{Greenbelt, MD\color{cvred}}{I volunteered for several theater productions at The Greenbelt Arts Center and the Music and Drama Club at NASA. I do tech work, mainly sound. My responsibilities include mixing the audio levels live, and playing/making my own sound effects.}        \\
+	\end{tabular}
+
+
+	\section*{Skills}
+
+	 {\bf Languages:} Rust, C/C++, Nix, Shell, Lua, Python\\
+	{\bf Databases:} SQLite\\
+	{\bf Version Control:} Git\\
+	{\bf Build Tools:} CMake, Nix\\
+	{\bf Operating systems:} Linux\\
+	{\bf DevOps:} NixOS, Docker\\
+	{\bf Tools:} NeoVim\\
+
+
+\end{paracol}
+
+\end{document}

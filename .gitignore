@@ -1,0 +1,8 @@
+.direnv
+*.pdf
+*.log
+*.fls
+*.aux
+*.fdb_latexmk
+result
+main.out
