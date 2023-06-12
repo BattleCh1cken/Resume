@@ -38,17 +38,17 @@
 \definecolor{orangeFruit}{RGB}{224, 128, 44}
 \definecolor{redBlood}{RGB}{188, 20, 20}
 \definecolor{grayShy}{RGB}{153, 150, 142}
+\definecolor{deepPurple}{HTML}{6200EE}
+\definecolor{lilac}{HTML}{BB86FC}
 
 % TODO: this should go someplace else, but idk where
 
 \hypersetup{
 	colorlinks=true,
-	linkcolor=blue,
-	filecolor=magenta,
 	urlcolor=blueSky,
 }
 
-\newcommand{\mainColor}{redBlood} % pick a color above, or add a custom one
+\newcommand{\mainColor}{blueSky} % pick a color above, or add a custom one
 
 %%%%%%%%%%%%% Spaces %%%%%%%%%%%%%
 
@@ -232,10 +232,7 @@ Junior in High School with an interest in Computer Science. Currently looking fo
 
 
 \negsvspace
-\cvsection{\faDna}{Skills}
-\svspace
-\cvsubsection{\faLaptopCode}{Technical skills}
-\svspace
+\cvsection{\faLaptopCode}{Skills}
 
 \doubleSkill{\faCode}{Languages}{Rust \textbullet{} C/C++ \textbullet{} Shell \textbullet{} Nix \textbullet{} Lua \textbullet{} Python}
 \doubleSkill{\faDatabase}{Databases}{SQLite}
@@ -243,21 +240,6 @@ Junior in High School with an interest in Computer Science. Currently looking fo
 \doubleSkill{\faCloud}{DevOps}{NixOS \textbullet{} Docker}
 \doubleSkill{\faTools}{Tools}{Git \textbullet{} NeoVim \textbullet{} Z Shell \textbullet{} Hyprland \textbullet{} \LaTeX{}}
 \doubleSkill{\faLinux}{OS}{Linux}
-
-\negsvspace
-\cvsubsection{\faHandsHelping}{Soft skills}
-\svspace
-
-% TODO: correct these
-
-\simpleSkill{Team management}
-\simpleSkill{Problem-solving and critical thinking}
-\simpleSkill{Interpersonal Communication}
-\simpleSkill{Self-awareness}
-\simpleSkill{Self-motivated}
-\simpleSkill{Time management}
-\simpleSkill{Accountability}
-
 
 \cvsection{\faGraduationCap}{Education}
 \svspace
@@ -298,15 +280,15 @@ Junior in High School with an interest in Computer Science. Currently looking fo
 
 
 \neghvspace
-\cvsubsection{\faPuzzlePiece}{Hobbies \& Interests}
+\cvsection{\faPuzzlePiece}{Hobbies \& Interests}
 \svspace
 
 I love building things, hardware and software. In my free time I do things like 3d-printing, and contributing to open source projects. I also love fine tuning my setup, though both hardware and software, finding the perfect tools for the job, whether it be a perfectly tuned window manager, or a hand sautered mechanical keyboard.
 
-\cvsubsection{}{Personal Projects}
+\cvsubsection{\faCubes}{Personal Projects}
 
 \begin{itemize}
-	\item[\faAngleRight] \href{https://github.com/BattleCh1cken/dotfiles}{\textbf{Dotfiles:}} My personal configuration files for my computers, mangaged with the NixOS operating system.
+	\item[\faAngleRight] \href{https://github.com/BattleCh1cken/dotfiles}{\textbf{Dotfiles:}} My personal configuration files for my computers, containing things mangaged with the NixOS operating system.
 		\negxvspace{}
 	\item[\faAngleRight] \href{https://github.com/Area-53-Robotics/discord-bot}{\textbf{Fred:}} A discord bot that reminds people to do tasks with timers. Built with Rust, the Poise framework, and SQLite.
 		\negxvspace{}
